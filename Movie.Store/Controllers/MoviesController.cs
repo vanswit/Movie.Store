@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Movie.Store.Controllers
+namespace MovieStore.Controllers
 {
-    public class MoviesController : Controller
+    public class MovieController : Controller
     {
-        // GET: Movies
+        // GET: Movie
         public ActionResult Index()
         {
             return View();
