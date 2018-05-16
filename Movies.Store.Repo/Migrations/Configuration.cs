@@ -20,6 +20,7 @@ namespace MovieStore.Repo.Migrations
                 var random = new Random();
                 var movie = new Movie() {Name = "Movie" + i, Genre = "Genre" + random.Next(1,5), YearOfRelease = random.Next(1920,2018) };
                 context.Movies.AddOrUpdate(movie);
+                context.SaveChanges();
             }
 
             for (int i = 0; i < 75; i++)
@@ -27,6 +28,7 @@ namespace MovieStore.Repo.Migrations
                 var random = new Random();
                 var review = new Review() { Body = "blabla" + i, Rating = random.Next(1, context.Movies.Count()), MovieID = random.Next(1, 10) };
                 context.Reviews.AddOrUpdate(review);
+                context.SaveChanges();
             }
         }
     }

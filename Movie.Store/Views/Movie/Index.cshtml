@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MovieStore.Entities.Movie>
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+<h2>Movies</h2>
+<div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Release</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.ValueFor(m => item.Name)</td>
+                <td>@Html.ValueFor(m => item.Genre)</td>
+                <td>@Html.ValueFor(m => item.YearOfRelease)</td>
+            </tr>
+
+        }
+    </table>
+</div>
+
