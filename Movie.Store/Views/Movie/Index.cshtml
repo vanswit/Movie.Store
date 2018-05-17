@@ -18,6 +18,8 @@
                 <td>@Html.ValueFor(m => item.Name)</td>
                 <td>@Html.ValueFor(m => item.Genre)</td>
                 <td>@Html.ValueFor(m => item.YearOfRelease)</td>
+                <td>@Html.HiddenFor(m => item.ID)</td>
+                <td>@Html.ActionLink("Details","Detail","Movie",new {ID = item.ID }, null)</td>
             </tr>
 
         }

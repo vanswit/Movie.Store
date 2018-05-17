@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+
+@model MovieStore.Models.MovieDetailViewModel
+
+<h2>@Model.Movie.Name (@Model.Movie.YearOfRelease)</h2>
+
+@Html.ActionLink("Add Review", "AddReview", "Movie", new { ID = Model.Movie.ID }, null)
+
+@foreach (var item in Model.Reviews)
+{
+    <div>
+        <div>
+            @Html.ValueFor(r => item.Rating)
+        </div>
+        <hr />
+        <div>
+            @Html.ValueFor(r => item.Body)
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Back", "Index")
+
+
+
+

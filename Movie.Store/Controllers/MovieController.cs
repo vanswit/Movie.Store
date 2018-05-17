@@ -1,4 +1,5 @@
 ﻿using MovieStore.Entities;
+using MovieStore.Models;
 using MovieStore.Repo;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,36 @@ namespace MovieStore.Controllers
                 movies = context.Movies.ToList();
             }
             return View(movies);
+        }
+
+        public ActionResult Detail(int ID)
+        {
+            var model = new MovieDetailViewModel();
+            using (var context = new MovieContext())
+            {
+                var movie = context.Movies.Where(m => m.ID == ID).Single();
+                model.Movie = movie;
+                model.Reviews = context.Reviews.Where(r => r.MovieID == movie.ID).ToList();
+            }
+            return View(model);
+        }
+
+        public ActionResult AddReview(int ID)
+        {
+            var movie = new Movie();
+            using (var context = new MovieContext())
+            {
+                movie = context.Movies.Where(m => m.ID == ID).Single();
+            }
+            return View(movie);
+        }
+
+        [HttpPost]
+        public ActionResult AddReview(Review review)
+        {
+            var repo = new ReviewRepo();
+            repo.SaveOrUpdate(review);
+            return View("Index");
         }
     }
 }
