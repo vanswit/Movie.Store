@@ -48,8 +48,8 @@ namespace MovieStore.Controllers
         public ActionResult AddReview(Review review)
         {
             var repo = new ReviewRepo();
-            repo.SaveOrUpdate(review);
-            return View("Index");
+            repo.SaveOrUpdate(new Review() { Body = review.Body, Rating = review.Rating, MovieID = review.MovieID });
+            return RedirectToAction("Index");
         }
     }
 }

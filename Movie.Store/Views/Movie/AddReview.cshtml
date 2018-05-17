@@ -4,10 +4,13 @@
     ViewBag.Title = "AddReview";
 }
 
-<h2>@Model.Name Review</h2>
+<h2>Review @Model.Name</h2>
 
 @using (Html.BeginForm())
 {
+    <div>
+        <input type="hidden" name="MovieID" value="@Model.ID"/>
+    </div>
     <div>
         <input type="text" name="Rating" />
     </div>
@@ -15,7 +18,7 @@
         <textarea name="Body"></textarea>
     </div>
     <div>
-        <input type="button" formmethod="post" value="Add"/>
+        <input type="submit" formmethod="post" value="Add"/>
     </div>
 }
 
