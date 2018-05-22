@@ -49,7 +49,22 @@ namespace MovieStore.Controllers
         {
             var repo = new ReviewRepo();
             repo.SaveOrUpdate(new Review() { Body = review.Body, Rating = review.Rating, MovieID = review.MovieID });
-            return RedirectToAction("Index");
+            return RedirectToAction("Details");
+        }
+
+        public ActionResult Edit(int ID)
+        {
+            var repo = new MovieRepo();
+            var movie = repo.GetByID(ID);
+            return View(movie);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Movie movie)
+        {
+            var repo = new MovieRepo();
+            int id = repo.SaveOrUpdate(movie);
+            return Redirect("~/Movie/Detail/" + id);
         }
     }
 }

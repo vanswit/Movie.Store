@@ -32,7 +32,8 @@ namespace MovieStore.Repo
             using (MovieContext MovieDB = new MovieContext())
             {
                 MovieDB.Entry(movie).State = movie.ID == 0? EntityState.Added : EntityState.Modified;
-                return MovieDB.SaveChanges();
+                MovieDB.SaveChanges();
+                return movie.ID;
             }
         }
     }

@@ -22,6 +22,7 @@ namespace MovieStore.Repo.Migrations
             //    System.Diagnostics.Debugger.Launch();
             //}
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(MovieStore.Repo.MovieContext context)
