@@ -11,14 +11,15 @@ namespace MovieStore.Controllers
 {
     public class MovieController : Controller
     {
-        // GET: Movie
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = null)
         {
-            var movies = new List<Movie>();
-            using (var context = new MovieContext())
+            var repo = new MovieRepo();
+            var movies = repo.GetAllEntries().Where(m => searchTerm == null || m.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+            if (Request.IsAjaxRequest())
             {
-                movies = context.Movies.ToList();
+                return PartialView("_MovieList", movies);
             }
+
             return View(movies);
         }
 

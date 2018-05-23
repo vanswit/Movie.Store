@@ -1,0 +1,27 @@
+﻿@model IEnumerable<MovieStore.Entities.Movie>
+
+
+<div id="movieList">
+    <h2>Movies</h2>
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Release</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ValueFor(m => item.Name)</td>
+                    <td>@Html.ValueFor(m => item.Genre)</td>
+                    <td>@Html.ValueFor(m => item.YearOfRelease)</td>
+                    <td>@Html.HiddenFor(m => item.ID)</td>
+                    <td>@Html.ActionLink("Details", "Detail", "Movie", new { ID = item.ID }, null)</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "Movie", new { ID = item.ID }, null)</td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>
