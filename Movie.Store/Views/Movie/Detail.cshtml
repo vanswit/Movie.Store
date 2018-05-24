@@ -11,15 +11,16 @@
 
 @foreach (var item in Model.Reviews)
 {
+<div>
     <div>
-        <div>
-            @Html.ValueFor(r => item.Rating)
-        </div>
-        <hr />
-        <div>
-            @Html.ValueFor(r => item.Body)
-        </div>
+        @Html.ValueFor(r => item.Rating)
     </div>
+
+    <div>
+        @Html.ValueFor(r => item.Body)
+    </div>
+    <hr />
+</div>
 }
 
 @Html.ActionLink("Back", "Index")

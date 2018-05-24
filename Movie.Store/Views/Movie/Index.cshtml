@@ -4,6 +4,8 @@
     ViewBag.Title = "Movies";
 }
 
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+
 @using (Ajax.BeginForm(
     new AjaxOptions
     {
@@ -16,7 +18,7 @@
     <input type="submit" value="Search by Name" />
 }
 
-@Html.Partial("_MovieList", Model);
+@Html.Partial("_MovieList", Model)
 @*<div id="movieList">
         <h2>Movies</h2>
         <div>

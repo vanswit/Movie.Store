@@ -11,10 +11,24 @@ namespace MovieStore.Controllers
 {
     public class MovieController : Controller
     {
+        public ActionResult Autocomplete(string term)
+        {
+            var repo = new MovieRepo();
+            var model = repo.GetAllEntries().Where(m => m.Name.StartsWith(term))
+                .Take(10)
+                .Select(m => new
+                {
+                    label = m.Name
+                });
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult Index(string searchTerm = null)
         {
             var repo = new MovieRepo();
-            var movies = repo.GetAllEntries().Where(m => searchTerm == null || m.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+            var movies = repo.GetAllEntries().Where(m => searchTerm == null || m.Name.ToLower()
+            .Contains(searchTerm.ToLower())).ToList();
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_MovieList", movies);
