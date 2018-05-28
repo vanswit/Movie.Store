@@ -5,6 +5,7 @@
 }
 
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<link href="~/Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" />
 
 @using (Ajax.BeginForm(
     new AjaxOptions
@@ -14,7 +15,7 @@
         UpdateTargetId = "movieList"
     }))
 {
-    <input type="text" name="searchTerm" />
+    <input type="text" name="searchTerm" data-ms-autocomplete="@Url.Action("Autocomplete")"/>
     <input type="submit" value="Search by Name" />
 }
 

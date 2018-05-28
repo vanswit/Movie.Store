@@ -14,13 +14,14 @@ namespace MovieStore.Controllers
         public ActionResult Autocomplete(string term)
         {
             var repo = new MovieRepo();
-            var model = repo.GetAllEntries().Where(m => m.Name.StartsWith(term))
+            var model = repo.GetAllEntries().Where(m => m.Name.ToLower().StartsWith(term.ToLower()))
                 .Take(10)
                 .Select(m => new
                 {
                     label = m.Name
                 });
-            return Json(model, JsonRequestBehavior.AllowGet);
+            List<Movie> temp = repo.GetAllEntries().Where(m => m.Name.ToLower().StartsWith(term.ToLower())).ToList();
+            return Json(model.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
