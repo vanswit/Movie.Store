@@ -29,11 +29,15 @@ namespace MovieStore.Repo.Migrations
         {
             context.Database.ExecuteSqlCommand("TRUNCATE TABLE Movies");
             context.Database.ExecuteSqlCommand("TRUNCATE TABLE Reviews");
-
+            context.Database.ExecuteSqlCommand("TRUNCATE TABLE Roles");
+            
+            ICollection<Role> roles = new Role[] { new Role { Name = "Admin"}, new Role { Name = "User"} };
+            context.Roles.AddRange(roles);
+            context.Users.Add(new User {UserName = "Tom", Email = "Tom.Vanswijgenhoven@hotmail.com",Password="tom",Roles = roles });
             context.Movies.AddRange(GenerateMovies(50));
             context.Reviews.AddRange(GenerateReviews(150,50));
             context.SaveChanges();
-        }
+        } 
 
         private IEnumerable<Movie> GenerateMovies(int numberOfMovies)
         {

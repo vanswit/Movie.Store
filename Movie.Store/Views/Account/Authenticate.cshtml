@@ -1,0 +1,17 @@
+﻿
+@model string
+<link href="~/Content/Site.css" rel="stylesheet" />
+<h2>Log in</h2>
+
+@using (Html.BeginForm())
+{
+<div id="LoginForm">
+    User Name : <input type="text" name="username" />
+    <br />
+    Password : <input type="password" name="password" />
+    <br />
+    <input type="submit" value="Submit" />
+    <label id="error">@Model</label>
+</div>
+}
+
