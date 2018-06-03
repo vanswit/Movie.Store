@@ -38,7 +38,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomMembership.cs" />
+    <Compile Include="CustomMembershipUser.cs" />
+    <Compile Include="CustomPrincipal.cs" />
+    <Compile Include="CustomRole.cs" />
     <Compile Include="ICrudable.cs" />
     <Compile Include="Migrations\201805151940352_Initial.cs" />
     <Compile Include="Migrations\201805151940352_Initial.Designer.cs">
