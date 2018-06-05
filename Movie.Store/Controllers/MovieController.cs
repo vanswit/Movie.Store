@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace MovieStore.Controllers
 {
@@ -25,16 +26,15 @@ namespace MovieStore.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(string searchTerm = null)
+        public ActionResult Index(string searchTerm = null, int page = 1)
         {
             var repo = new MovieRepo();
             var movies = repo.GetAllEntries().Where(m => searchTerm == null || m.Name.ToLower()
-            .Contains(searchTerm.ToLower())).ToList();
+            .Contains(searchTerm.ToLower())).ToPagedList(page, 10);
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_MovieList", movies);
             }
-
             return View(movies);
         }
 

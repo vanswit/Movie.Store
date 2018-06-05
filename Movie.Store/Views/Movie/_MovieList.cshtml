@@ -1,7 +1,12 @@
-﻿@model IEnumerable<MovieStore.Entities.Movie>
+﻿@model IPagedList<MovieStore.Entities.Movie>
 
 
 <div id="movieList">
+
+    <div class="pagedList" data-ms-target="#movieList">
+        @Html.PagedListPager(Model, page => Url.Action("Index",new {page}),PagedListRenderOptions.MinimalWithItemCountText)
+    </div>
+
     <h2>Movies</h2>
     <div>
         <table>
